@@ -51,7 +51,7 @@ def test_search():
     assert linked_list.search(u"test_val_2").value == u"test_val_2"
 
 
-def test_remove_first():
+def test_remove_last():
     linked_list = LL.LinkedList()
     linked_list.insert(u"test_val_1")
     linked_list.insert(u"test_val_2")
@@ -59,6 +59,16 @@ def test_remove_first():
     node = linked_list.search(u"test_val_1")
     linked_list.remove(node)
     assert linked_list.__str__() == "(test_val_3, test_val_2)"
+
+
+def test_remove_first():
+    linked_list = LL.LinkedList()
+    linked_list.insert(u"test_val_1")
+    linked_list.insert(u"test_val_2")
+    linked_list.insert(u"test_val_3")
+    node = linked_list.search(u"test_val_3")
+    linked_list.remove(node)
+    assert linked_list.__str__() == "(test_val_2, test_val_1)"
 
 
 def test_remove_random():
