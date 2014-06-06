@@ -8,7 +8,7 @@ def parentheticals(a_string):
         closed_count = 0
         for letter in a_string:
             if closed_count > open_count:
-                return u"You've got all the right pieces in all the wrong places."
+                return u"All the right pieces in all the wrong places."
             elif letter == u"(":
                 open_count += 1
             elif letter == u")":
