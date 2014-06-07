@@ -47,10 +47,7 @@ class Data(object):
 
     def __init__(self, value, is_above=None):
         self.value = value
-        if is_above:
-            self.is_above = is_above
-        else:
-            self.is_above = None
+        self.is_above = is_above
 
     def __str__(self):
         u"""Return unicode represenation of Data.value."""
