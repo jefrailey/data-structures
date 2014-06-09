@@ -2,7 +2,14 @@ import queue
 
 
 def _make_queue():
-    pass
+    q = Queue()
+    q.enqueue('a')
+    q.enqueue(1)
+    q.enqueue(True)
+    q.enqueue(None)
+    q.enqueue(False)
+    q.enqueue(0)
+    return q
 
 
 def test_init_queue():
