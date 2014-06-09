@@ -1,17 +1,18 @@
 def parentheticals(a_string):
-    if a_string.count(u"(") > a_string.count(u")"):
+    _close = a_string.count(u")")
+    _open = a_string.count(u"(")
+    if _open > _close:
         return -1
-    elif a_string.count(u"(") < a_string.count(u")"):
+    elif _open < _close:
         return 1
-    elif a_string.count(u"(") == a_string.count(u")"):
-        open_count = 0
-        closed_count = 0
+    elif _open == _close:
+        _count = 0
         for letter in a_string:
-            if closed_count > open_count:
+            if _count > 0:
                 return u"All the right pieces in all the wrong places."
             elif letter == u"(":
-                open_count += 1
+                _count -= 1
             elif letter == u")":
-                closed_count += 1
+                _count += 1
         else:
             return 0
