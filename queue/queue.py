@@ -18,6 +18,8 @@ class Queue(LinkedList):
                 node = node.the_next
             else:
                 last_node = node
+            a = last_node.value
             self.remove(last_node)
+            return a
         else:
             raise LookupError

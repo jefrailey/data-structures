@@ -24,9 +24,8 @@ def test_dequeue():
     for val in value_tuple:
         q.enqueue(val)
     for val in value_tuple:
-        q.dequeue()
         if q.head_node:
-            assert q.head_node.value == value_tuple[-1]
+            assert q.dequeue() == val
         else:
             with pytest.raises(LookupError):
                 q.dequeue()
