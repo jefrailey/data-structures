@@ -1,38 +1,39 @@
-import queue
+from queue import Queue, Node
 
-
-def _make_empty_queue():
-    q = Queue()
-    return q
-
-
-def _enqueue(q):
-    q.enqueue('a')
-    q.enqueue(1)
-    q.enqueue(True)
-    q.enqueue(None)
-    q.enqueue(False)
-    q.enqueue(0)
-    return q
+value_tuple = (u'a', 1, True, None, False, 0)
 
 
 def test_init_queue():
-    pass
+    q = Queue()
+    assert isinstance(q, Queue)
 
 
 def tests_init_node():
-    pass
+    for val in value_tuple:
+        n = Node(val)
+        assert isinstance(n, Node)
 
 
 def test_enqueue():
-    pass
+    q = Queue()
+    for val in value_tuple:
+        q.enqueue(val)
+        assert q.head.value == value_tuple[0]
+        assert q.tail.value == val
 
 
 def test_dequeue():
-    # Need to test dequeue() on an empty queue, queue of 1 value, and a queue
-    # with multiple values
-    pass
+    q = Queue()
+    for val in value_tuple:
+        q.enqueue(val)
+    for val in value_tuple:
+        q.dequeue()
+        assert q.head.value == val
+        assert q.tail.value == value_tuple[-1]
 
 
 def test_size():
-    pass
+    q = Queue()
+    for i, val in enumerate(value_tuple, 1):
+        q.enqueue(val)
+        assert q.size() == i
