@@ -1,8 +1,12 @@
 import queue
 
 
-def _make_queue():
+def _make_empty_queue():
     q = Queue()
+    return q
+
+
+def _enqueue(q):
     q.enqueue('a')
     q.enqueue(1)
     q.enqueue(True)
