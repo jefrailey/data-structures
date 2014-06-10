@@ -1,12 +1,12 @@
 class DoublyLinked(object):
     """docstring for DoublyLinked"""
-    def __init__(self, arg):
-        super(DoublyLinked, self).__init__()
-        self.arg = arg
+    def __init__(self, head=None, tail=None):
+        self.head = head
+        self.tail = tail
 
 
 class Node(object):
     """docstring for Node"""
-    def __init__(self, arg):
-        super(Node, self).__init__()
-        self.arg = arg
+    def __init__(self, hwards=None, twards=None):
+        self.hwards = hwards
+        self.twards = twards
