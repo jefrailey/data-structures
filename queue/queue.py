@@ -25,9 +25,11 @@ class Queue(object):
             raise LookupError
 
     def size(self):
+        u"""Return the number of values stored in the Queue."""
         return self.list.size()
 
     def __str__(self):
+        u"""Return a unicode string representation of data held in Queue."""
         q_str = u")"
         if self.list.head_node:
             node = self.list.head_node
