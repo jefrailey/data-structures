@@ -20,25 +20,25 @@ def test_DoublyLinked_init():
 
 
 def test_insert():
-    u"""Assert .insert() adds a value to the head of the doubly linked list."""
+    u"""Assert .insert() adds a value/node to the h of the doubly linked list."""
     doubly_linked = DoublyLinked()
     for val in values:
         doubly_linked.insert(val)
-        assert doubly_linked.head.value == val
-    assert doubly_linked.head.val == values[-1]
+        assert doubly_linked.h.value == val
+    assert doubly_linked.h.value == values[-1]
 
 
 def test_append():
-    u"""Assert .append() adds a value to the tail of the doubly linked list."""
+    u"""Assert .append() adds a value to the t of the doubly linked list."""
     doubly_linked = DoublyLinked()
     for val in values:
         doubly_linked.append(val)
-        assert doubly_linked.tail.value == val
-    assert doubly_linked.tail.value == values[0]
+        assert doubly_linked.t.value == val
+    assert doubly_linked.t.value == values[0]
 
 
 def test_pop():
-    u"""Assert .pop() removes and returns the head value from the list."""
+    u"""Assert .pop() removes and returns the h value from the list."""
     doubly_linked = DoublyLinked()
     for val in values:
         doubly_linked.append(val)
@@ -49,7 +49,7 @@ def test_pop():
 
 
 def test_shift():
-    u"""Assert .shift() removes and returns the tail value from the list."""
+    u"""Assert .shift() removes and returns the t value from the list."""
     doubly_linked = DoublyLinked()
     for val in values:
         doubly_linked.insert(val)
