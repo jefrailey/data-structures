@@ -28,6 +28,16 @@ class DoublyLinked(object):
         finally:
             return returnValue
 
+    def shift(self):
+        """Removes and returns the t value from the list."""
+        returnValue = None
+        try:
+            returnValue, self.t, self.t.twards = self.t.value, self.t.hwards, None
+        except AttributeError:
+            returnValue, self.t, self.h = self.t.value, None, None
+        finally:
+            return returnValue
+
 
 class Node(object):
     """docstring for Node"""

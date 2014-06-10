@@ -54,8 +54,7 @@ def test_shift():
         doubly_linked.insert(val)
     for val in values:
         assert doubly_linked.shift() == val
-    with pytest.raises(LookupError):  # Do we want shift to return None ?
-        doubly_linked.shift()
+    assert doubly_linked.shift() == None
 
 
 def test_remove():
