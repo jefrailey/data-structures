@@ -2,7 +2,7 @@ from doubly_linked import DoublyLinked, Node
 import pytest
 import random
 
-values = (u'a', 1, True, None, False, 0)
+values = [u'a', 1, True, None, False, 0]
 
 
 def test_Node_init():
@@ -65,9 +65,13 @@ def test_remove():
     test_vals = values[:]
     while test_vals:
         val = random.choice(test_vals)
-        removed_node = doubly_linked.remove(val)
-        assert removed_node.value == val
+        doubly_linked.remove(val)
         test_vals.remove(val)
+    assert doubly_linked.pop() == None
+    assert doubly_linked.h == None
+    assert doubly_linked.t == None
+
+
     doubly_linked.insert(1)
     with pytest.raises(LookupError):
         doubly_linked.remove("test value")

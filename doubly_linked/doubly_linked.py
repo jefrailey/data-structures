@@ -19,7 +19,7 @@ class DoublyLinked(object):
             node.hwards, self.t.twards, self.t = self.t, node, node
 
     def pop(self):
-        """Removes and returns the h value from the list."""
+        u"""Removes and returns the h value from the list."""
         returnValue = None
         try:
             returnValue, self.h, self.h.hwards = self.h.value, self.h.twards, None
@@ -29,7 +29,7 @@ class DoublyLinked(object):
             return returnValue
 
     def shift(self):
-        """Removes and returns the t value from the list."""
+        u"""Removes and returns the t value from the list."""
         returnValue = None
         try:
             returnValue, self.t, self.t.twards = self.t.value, self.t.hwards, None
@@ -37,6 +37,32 @@ class DoublyLinked(object):
             returnValue, self.t, self.h = self.t.value, None, None
         finally:
             return returnValue
+
+    def remove(self, value):
+        u"""Removes the first matching value from the list."""
+        if self.h == None:
+            raise LookupError
+        elif self.h is self.t and self.h.value == value:
+            self.h = None
+            self.t = None
+        elif self.h.value == value:
+            self.h = self.h.twards
+        elif self.t.value == value:
+            self.t = self.t.hwards
+        else:
+            cur_node = self.h
+            while True:
+                if cur_node.value == value:
+                    cur_node.hwards.twards = cur_node.twards
+                    cur_node.twards.hwards = cur_node.hwards
+                    break
+                else:
+                    if cur_node.twards == None:
+                        raise LookupError
+                    else:
+                        cur_node = cur_node.twards
+
+
 
 
 class Node(object):
