@@ -44,8 +44,7 @@ def test_pop():
         doubly_linked.append(val)
     for val in values:
         assert doubly_linked.pop() == val
-    with pytest.raises(LookupError):  # Do we want pop to return None instead?
-        doubly_linked.pop()
+    assert doubly_linked.pop() == None
 
 
 def test_shift():

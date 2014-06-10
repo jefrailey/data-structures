@@ -18,8 +18,15 @@ class DoublyLinked(object):
         elif self.h:
             node.hwards, self.t.twards, self.t = self.t, node, node
 
-
-
+    def pop(self):
+        """Removes and returns the h value from the list."""
+        returnValue = None
+        try:
+            returnValue, self.h, self.h.hwards = self.h.value, self.h.twards, None
+        except AttributeError:
+            returnValue, self.h, self.t = self.h.value, None, None
+        finally:
+            return returnValue
 
 
 class Node(object):
