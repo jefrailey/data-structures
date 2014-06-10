@@ -11,6 +11,12 @@ class DoublyLinked(object):
         elif self.h:
             node.twards, self.h.hwards, self.h = self.h, node, node
 
+    def append(self,value):
+        node = Node(value)
+        if not self.h:
+            self.h = self.t = node
+        elif self.h:
+            node.hwards, self.t.twards, self.t = self.t, node, node
 
 
 

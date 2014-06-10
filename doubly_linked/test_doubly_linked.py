@@ -34,7 +34,7 @@ def test_append():
     for val in values:
         doubly_linked.append(val)
         assert doubly_linked.t.value == val
-    assert doubly_linked.t.value == values[0]
+    assert doubly_linked.t.value == values[-1]
 
 
 def test_pop():
