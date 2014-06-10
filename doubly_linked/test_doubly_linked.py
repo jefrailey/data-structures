@@ -25,6 +25,7 @@ def test_insert():
     for val in values:
         doubly_linked.insert(val)
         assert doubly_linked.head.value == val
+    assert doubly_linked.head.val == values[-1]
 
 
 def test_append():
@@ -33,6 +34,7 @@ def test_append():
     for val in values:
         doubly_linked.append(val)
         assert doubly_linked.tail.value == val
+    assert doubly_linked.tail.value == values[0]
 
 
 def test_pop():
@@ -40,6 +42,7 @@ def test_pop():
     doubly_linked = DoublyLinked()
     for val in values:
         doubly_linked.append(val)
+    for val in values:
         assert doubly_linked.pop() == val
     with pytest.raises(LookupError):  # Do we want pop to return None instead?
         doubly_linked.pop()
@@ -50,7 +53,8 @@ def test_shift():
     doubly_linked = DoublyLinked()
     for val in values:
         doubly_linked.insert(val)
-        assert doubly_linked.pop() == val
+    for val in values:
+        assert doubly_linked.shift() == val
     with pytest.raises(LookupError):  # Do we want shift to return None ?
         doubly_linked.shift()
 
