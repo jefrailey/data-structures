@@ -70,3 +70,29 @@ of parenthesis:
         imbalanced in distribution.
 
 This was insipired by conversations with [Lawrence Fritts](https://github.com/lfritts).
+
+**Doubly Linked List**
+
+This implementation of a [doubly linked list](http://en.wikipedia.org/wiki/Doubly_linked_list) includes a
+class that represents the list, DoublyLinked(), and one that represents a value in the list, Node().
+Doubly linked lists are initially empty, but can have values added via DoublyLinked() methods.
+
+DoublyLinked()
+
+    * DoublyLinked()
+        *Instantiate an empty list.
+    * .insert(value)
+        * Add a value at the head of the list.
+    * .append(value)
+        * Add a value to the tail of the list.
+    * .pop()
+        * Return the head value and remove it from the list.
+    * .shift()
+        * Return the tail value and remove it from the list.
+    * .remove(value)
+        * Remove the first (starting at the head) matching value from the list.
+
+Node()
+
+    * Node(value)
+        * Instantiate a node that represents a value.
