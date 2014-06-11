@@ -20,7 +20,7 @@ def test_DoublyLinked_init():
 
 
 def test_insert():
-    u"""Assert .insert() adds a value/node to the h of the doubly linked list."""
+    u"""Assert .insert() adds value/node to the h of the doubly linked list."""
     doubly_linked = DoublyLinked()
     for val in values:
         doubly_linked.insert(val)
@@ -44,7 +44,7 @@ def test_pop():
         doubly_linked.append(val)
     for val in values:
         assert doubly_linked.pop() == val
-    assert doubly_linked.pop() == None
+    assert doubly_linked.pop() is None
 
 
 def test_shift():
@@ -54,7 +54,7 @@ def test_shift():
         doubly_linked.insert(val)
     for val in values:
         assert doubly_linked.shift() == val
-    assert doubly_linked.shift() == None
+    assert doubly_linked.shift() is None
 
 
 def test_remove():
@@ -67,11 +67,9 @@ def test_remove():
         val = random.choice(test_vals)
         doubly_linked.remove(val)
         test_vals.remove(val)
-    assert doubly_linked.pop() == None
-    assert doubly_linked.h == None
-    assert doubly_linked.t == None
-
-
+    assert doubly_linked.pop() is None
+    assert doubly_linked.h is None
+    assert doubly_linked.t is None
     doubly_linked.insert(1)
     with pytest.raises(LookupError):
         doubly_linked.remove("test value")
