@@ -10,27 +10,47 @@ class Heap(object):
     def __len__(self):
         return len(self.core)
 
-    def __getitem__(self,key):
+    def __getitem__(self, key):
         return self.core[key]
 
-    def _flip_parent_child(self,child_index):
-        u"""Flips parent/child if child is greater than parent.
+    def _flip_p_c(self, child_index):
+        u"""Flips p/c if c is greater than p.
 
         Unless self.invert is set to True, in which case it does the opposite.
         Returns True if switch occured, False otherwise."""
-        return bool
+        print "Start _flip_p_c"
+        child = self.core[child_index]
+        parent_index = self._get_p(child_index)
+        parent = self.core[parent_index]
+        if child > parent:
+            self.core[child_index], self.core[parent_index] = parent, child
+            return True
+        else:
+            return False
 
-    def _get_parent(self,child_index):
-        u"""Computes the parent index from a child index."""
-        return (child_index-1)//2
+    def _get_p(self, child_index):
+        u"""Computes the p index from a c index."""
+        if child_index:
+            print "_get_p: {}".format((child_index-1)//2)
+            return (child_index-1)//2
+        else:
+            return 0
 
-    def _get_children(self,parent_index):
-        u"""Returns a tuple consisting of the two children of a given parent."""
-        return (2*parent_index+1),(2*parent_index+2)
+    def _get_cren(self, p_index):
+        u"""Returns a tuple consisting of the two cren of a given p."""
+        return (2*p_index+1), (2*p_index+2)
 
-    def push(self,num):
+    def push(self, num):
         u"""Adds a vaue to the heap and correctly reorganizes."""
-        pass
+        self.core.append(num)
+        self._organize_up()
+
+    def _organize_up(self):
+        num_index = len(self.core)-1
+        # num = self.core[num_index]
+        while self._flip_p_c(num_index):
+            num_index = self._get_p(num_index)
+        print self.core
 
     def pop(self):
         u"""Removes the top value from the heap and correctly reorganizes."""
