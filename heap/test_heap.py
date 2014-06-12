@@ -50,7 +50,7 @@ def test_pop_reorganizes():
     for num in sample_numbers:
         removed = heap.pop()
         print heap[:]
-        assert removed == max(nums_in_heap)t
+        assert removed == max(nums_in_heap)
         nums_in_heap.remove(removed)
 
 
