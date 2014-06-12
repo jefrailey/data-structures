@@ -50,5 +50,9 @@ def test_pop_reorganizes():
     for num in sample_numbers:
         removed = heap.pop()
         print heap[:]
-        assert removed == max(nums_in_heap)
+        assert removed == max(nums_in_heap)t
         nums_in_heap.remove(removed)
+
+
+        #AFRAID that tests might not be valid, last shift to left when popping a value COULD
+        # put values into improper locations, use a slightly different push method to check for NONE values.
