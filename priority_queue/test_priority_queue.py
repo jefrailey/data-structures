@@ -105,3 +105,11 @@ def test_pop_reorganizes_priority():
         while i>0:
             assert removed == nums_in_heap[i]
             break
+
+
+def test_peak(numbers=sample_numbers):
+    u"""Assert that pop removes the head."""
+    priorityQ = PriorityQ()
+    while len(priorityQ) < len(numbers):
+        priorityQ.push(random.choice(numbers))
+        assert priorityQ.peek() == max(priorityQ.core)
