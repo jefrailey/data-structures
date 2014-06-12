@@ -9,11 +9,12 @@ sample_numbers = [
     999, 426, 2
     ]
 
-# def _build_a_heap():
-#     heap = Heap()
-#     for num in sample_numbers:
-#         heap.push(num)
-#     return heap
+
+def _build_a_heap():
+    heap = Heap()
+    for num in sample_numbers:
+        heap.push(num)
+    return heap
 
 
 def test_init():
@@ -31,18 +32,23 @@ def test_push():
         numsPushed.append(num)
         assert heap[0] == max(numsPushed)
 
+
 def test_pop_removes_head():
     u"""Assert that pop removes the head."""
-    heap =_build_a_heap()
+    heap = _build_a_heap()
+    # print heap[0]
     for num in sample_numbers:
-        assert heap.pop() == heap[0]
-    assert heap.pop() == None
+        a = heap[0]
+        assert heap.pop() == a
+    assert heap.pop() is None
+
 
 def test_pop_reorganizes():
     u"""Assert that pop properly reorganizes."""
-    heap =_build_a_heap()
+    heap = _build_a_heap()
     nums_in_heap = sample_numbers[:]
     for num in sample_numbers:
         removed = heap.pop()
+        print heap[:]
         assert removed == max(nums_in_heap)
         nums_in_heap.remove(removed)
