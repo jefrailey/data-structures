@@ -88,6 +88,7 @@ def test_pop_reorganizes_birthorder():
             assert removed == nums_in_heap[i]
             break
 
+
 def test_pop_reorganizes_priority():
     u"""Assert that pop properly reorganizes."""
     priorityQ = _build_a_heap(_test_priority)
