@@ -28,6 +28,7 @@ class PQNode(object):
         return u"(Value: {}, Priority: {}, Birthdate: {})".format(
             self.value, self.priority, self.birth)
 
+
 class PriorityQ(Heap):
     def __init__(self):
         super(PriorityQ, self).__init__()
