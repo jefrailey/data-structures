@@ -47,11 +47,12 @@ def test_pop_reorganizes():
     u"""Assert that pop properly reorganizes."""
     heap = _build_a_heap()
     nums_in_heap = sample_numbers[:]
-    for num in sample_numbers:
+    nums_in_heap.sort()
+    nums_in_heap = nums_in_heap[::-1]
+    for i, num in enumerate(sample_numbers):
         removed = heap.pop()
-        print heap[:]
-        assert removed == max(nums_in_heap)
-        nums_in_heap.remove(removed)
+        assert removed == nums_in_heap[i]
+
 
 
         #AFRAID that tests might not be valid, last shift to left when popping a value COULD
