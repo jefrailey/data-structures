@@ -19,10 +19,10 @@ class Heap(object):
         Unless self.invert is set to True, in which case it does the opposite.
         Returns True if switch occured, False otherwise."""
         child = self.core[child_index]
-        parent_index = self._get_p(child_index)
-        parent = self.core[parent_index]
+        the_parent_index = self._get_p(child_index)
+        parent = self.core[the_parent_index]
         if child > parent:
-            self.core[child_index], self.core[parent_index] = parent, child
+            self.core[child_index], self.core[the_parent_index] = parent, child
             return True
         else:
             return False
@@ -63,42 +63,60 @@ class Heap(object):
             num_index, drop_complete = self._flip_down(num_index)
         self.core = self.core[:num_index] + self.core[num_index+1:]
 
-    def _flip_down(self, parent_index):
-        parent = self.core[parent_index]
-        left_index, right_index = self._get_cren(parent_index)
+    def _flip_down(self, curent_index):
+        u"""Flips the popped value down through the tree.
+
+        This process continues until the popped value reaches the bottom,
+        where it cleanly falls off."""
+
+
+        current = self.core[curent_index]
+        left_index, right_index = self._get_cren(curent_index)
+        # If the current has no children:
         if left_index >= len(self.core) and right_index >= len(self.core):
-            nephews = self._get_cren(self._get_sib(parent_index))
+            # Get the index of the children of its siblings (nephews)
+            nephews = self._get_cren(self._get_sib(curent_index))
             left_index, right_index = nephews
+            # Try and get the value the first nephew index
             try:
                 left = self.core[left_index]
             except IndexError:
                 left = None
+            # Try and get the value of the second nephew index
             try:
                 right = self.core[right_index]
             except IndexError:
                 right = None
-            if left >= right and left is not None:
-                self.core[left_index], self.core[parent_index] = parent, left
+            # Find highest value nephew and swap it with current index.
+            if left > right:
+                self.core[left_index], self.core[curent_index] = current, left
                 return left_index, True
-            elif left < right and right is not None:
-                self.core[right_index], self.core[parent_index] = parent, right
+            elif left < right:
+                self.core[right_index], self.core[curent_index] = current, right
                 return right_index, True
-            return parent_index, True
+            # If current has no nephews, it is at the bottom of the heap.
+            return curent_index, True
+
+        # IF the current has one child at the right index:
         elif left_index >= len(self.core):
             right = self.core[right_index]
-            self.core[right_index], self.core[parent_index] = parent, right
+            self.core[right_index], self.core[curent_index] = current, right
             return right_index, False
+
+        # If the current has one child at the left index:
         elif right_index >= len(self.core):
             left = self.core[left_index]
-            self.core[left_index], self.core[parent_index] = parent, left
+            self.core[left_index], self.core[curent_index] = current, left
             return left_index, False
+
+        # Else: The current has two children:
         else:
             left, right = self.core[left_index], self.core[right_index]
             if left >= right:
-                self.core[left_index], self.core[parent_index] = parent, left
+                self.core[left_index], self.core[curent_index] = current, left
                 return left_index, False
             elif left < right:
-                self.core[right_index], self.core[parent_index] = parent, right
+                self.core[right_index], self.core[curent_index] = current, right
                 return right_index, False
 
     def pop(self):
