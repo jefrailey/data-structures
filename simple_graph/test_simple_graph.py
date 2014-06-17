@@ -8,20 +8,9 @@ def test_nodes_empty():
     assert g.nodes() == set()
 
 
-def test_nodes():
-    g = Graph()
-    nodes = g.nodes()
-    pass
-
-
 def test_edges_empty():
     g = Graph()
     assert g.edges() == set()
-
-
-# def test_node_init():
-#     n = Node("A")
-#     assert n.name == "A"
 
 
 def test_add_node():
@@ -52,3 +41,20 @@ def test_add_edge_two_new_nodes():
     assert u"A" in g.nodes()
     assert u"C" in g.nodes()
     assert (u"A", u"C") in g.edges()
+
+
+def test_del_node():
+    g = Graph()
+    g.add_edge(u"A", u"C")
+    g.del_node(u"A")
+    assert u"A" not in g.nodes()
+    assert (u"A", u"C") not in g.edges()
+
+
+def test_del_edge():
+    g = Graph()
+    g.add_edge(u"A", u"C")
+    g.del_edge(u"A", u"C")
+    assert (u"A", u"C") not in g.edges()
+    assert u"A" in g.nodes()
+    assert u"C" in g.nodes()
