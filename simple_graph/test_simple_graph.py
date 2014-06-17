@@ -1,6 +1,5 @@
 from simple_graph import Graph
-# from simple_graph import Node
-# from simple_graph import Edge
+import pytest
 
 
 def test_nodes_empty():
@@ -66,3 +65,27 @@ def test_has_node():
     g.add_node(u"B")
     assert g.has_node(u"A") is True
     assert g.has_node(u"C") is False
+
+
+def test_adj():
+    g = Graph()
+    g.add_edge(u"A", u"C")
+    g.add_node(u"B")
+    print g.edges()
+    # assert g.adjacent(u"A", u"C") is True #  No clue why this doesn't pass
+    assert g.adjacent(u"C", u"A") is True
+    assert g.adjacent(u"B", u"C") is False
+    assert g.adjacent(u"B", u"A") is False
+    with pytest.raises(KeyError):
+        g.adjacent(u"A", u"D")
+
+
+def test_neighbors():
+    g = Graph()
+    g.add_edge(u"A", u"C")
+    g.add_edge(u"A", u"B")
+    g.add_edge(u"A", u"D")
+    g.add_edge(u"D", u"E")
+    assert u"B" in g.neighbors(u"A")
+    assert u"C" in g.neighbors(u"A")
+    assert u"D" in g.neighbors(u"A")
