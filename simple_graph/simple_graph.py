@@ -21,22 +21,18 @@ class Graph(object):
         if (node1, node2) and (node2, node1) not in self.edges():
             self._edges.add((node1, node2))
 
+    def del_node(self, node):
+        if node in self.nodes():
+            self._nodes.remove(node)
+            edges = self.edges().copy()
+            for edge in edges:  # Del while iterating? Or does the return val make thisokay?
+                if node in edge:
+                    self._edges.remove(edge)
+        else:
+            raise ValueError(u"Node not found")
 
-# class Node(object):
-#     """docstring for Node"""
-#     def __init__(self, name):
-#         super(Node, self).__init__()
-#         self.name = name
-
-
-# class Edge(object):
-#     """docstring for Edge"""
-#     def __init__(self, name):
-#         super(Edge, self).__init__()
-#         self.name = name
-
-
-"""
-Graph contains nodes
-Nodes contain edges
-"""
+    def del_edge(self, node1, node2):
+        try:
+            self._edges.remove((node1, node2))
+        except KeyError:
+            self._edges.remove((node2, node1))
