@@ -1,11 +1,11 @@
 from simple_graph import Graph
-from simple_graph import Node
-from simple_graph import Edge
+# from simple_graph import Node
+# from simple_graph import Edge
 
 
 def test_nodes_empty():
     g = Graph()
-    assert g.nodes() == []
+    assert g.nodes() == set()
 
 
 def test_nodes():
@@ -16,18 +16,18 @@ def test_nodes():
 
 def test_edges_empty():
     g = Graph()
-    assert g.edges() == []
+    assert g.edges() == set()
 
 
-def test_node_init():
-    n = Node("A")
-    assert n.name == "A"
+# def test_node_init():
+#     n = Node("A")
+#     assert n.name == "A"
 
 
 def test_add_node():
     g = Graph()
     g.add_node("A")
-    assert g.nodes()[0].name == u"A"
+    assert "A" in g.nodes()
 
 
 def test_add_edge():
@@ -35,7 +35,7 @@ def test_add_edge():
     g.add_node(u"A")
     g.add_node(u"B")
     g.add_edge(u"A", u"B")
-    assert g.edges()[0].name == (u"A", u"B")
+    assert (u"A", u"B") in g.edges()
 
 
 def test_add_edge_one_new_node():
@@ -43,7 +43,7 @@ def test_add_edge_one_new_node():
     g.add_node(u"A")
     g.add_edge(u"A", u"C")
     assert u"C" in g.nodes()
-    assert g.edges()[0].name == (u"A", u"C")
+    assert (u"A", u"C") in g.edges()
 
 
 def test_add_edge_two_new_nodes():
@@ -51,4 +51,4 @@ def test_add_edge_two_new_nodes():
     g.add_edge(u"A", u"C")
     assert u"A" in g.nodes()
     assert u"C" in g.nodes()
-    assert g.edges()[0].name == (u"A", u"C")
+    assert (u"A", u"C") in g.edges()
