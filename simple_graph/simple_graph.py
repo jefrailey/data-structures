@@ -11,8 +11,21 @@ class Graph(object):
         return self._edges
 
 
+class Node(object):
+    """docstring for Node"""
+    def __init__(self, arg):
+        super(Node, self).__init__()
+        self.arg = arg
+
+
+class Edge(object):
+    """docstring for Edge"""
+    def __init__(self, arg):
+        super(Edge, self).__init__()
+        self.arg = arg
+
+
 """
 Graph contains nodes
 Nodes contain edges
 """
-
