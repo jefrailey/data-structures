@@ -1,9 +1,10 @@
 from simple_graph import Graph as g
+import pytest
 
 
 def test_nodes_empty():
-    nodes = g.nodes()
-    assert nodes is None
+    with pytest.raises(AttributeError):
+        nodes = g.nodes()
 
 
 def test_nodes():
