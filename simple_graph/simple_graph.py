@@ -43,13 +43,11 @@ class Graph(object):
     def adjacent(self, node1, node2):
         if node1 not in self.nodes() or node2 not in self.nodes():
             raise KeyError
-            print "Passed if"
-        elif (node1, node2) and (node2, node1) not in self.edges():
+        elif (node1, node2) not in self.edges() and (node2, node1)\
+                not in self.edges():
             return False
-        elif (node1, node2) or (node2, node1) in self.edges():
-            return True
         else:
-            return "WTF"
+            return True
 
     def neighbors(self, node):
         if node not in self.nodes():

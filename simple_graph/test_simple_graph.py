@@ -72,7 +72,7 @@ def test_adj():
     g.add_edge(u"A", u"C")
     g.add_node(u"B")
     print g.edges()
-    # assert g.adjacent(u"A", u"C") is True #  No clue why this doesn't pass
+    assert g.adjacent(u"A", u"C") is True
     assert g.adjacent(u"C", u"A") is True
     assert g.adjacent(u"B", u"C") is False
     assert g.adjacent(u"B", u"A") is False
