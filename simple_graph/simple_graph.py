@@ -10,19 +10,23 @@ class Graph(object):
     def edges(self):
         return self._edges
 
+    def add_node(self, name):
+        self._nodes.append(Node(name))
+
+
 
 class Node(object):
     """docstring for Node"""
-    def __init__(self, arg):
+    def __init__(self, name):
         super(Node, self).__init__()
-        self.arg = arg
+        self.name = name
 
 
 class Edge(object):
     """docstring for Edge"""
-    def __init__(self, arg):
+    def __init__(self, name):
         super(Edge, self).__init__()
-        self.arg = arg
+        self.name = name
 
 
 """
