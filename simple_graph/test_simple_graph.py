@@ -1,5 +1,4 @@
 from simple_graph import Graph
-import pytest
 
 
 def test_nodes_empty():
@@ -11,3 +10,8 @@ def test_nodes():
     g = Graph()
     nodes = g.nodes()
     pass
+
+
+def test_edges_empty():
+    g = Graph()
+    assert g.edges() == []
