@@ -36,3 +36,6 @@ class Graph(object):
             self._edges.remove((node1, node2))
         except KeyError:
             self._edges.remove((node2, node1))
+
+    def has_node(self, node):
+        return node in self.nodes()
