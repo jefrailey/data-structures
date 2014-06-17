@@ -58,3 +58,11 @@ def test_del_edge():
     assert (u"A", u"C") not in g.edges()
     assert u"A" in g.nodes()
     assert u"C" in g.nodes()
+
+
+def test_has_node():
+    g = Graph()
+    g.add_node(u"A")
+    g.add_node(u"B")
+    assert g.has_node(u"A") is True
+    assert g.has_node(u"C") is False
