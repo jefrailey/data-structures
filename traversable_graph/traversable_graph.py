@@ -2,6 +2,7 @@ from simple_graph import Graph
 from stack import Stack
 from queue import Queue
 
+
 class TraversableGraph(Graph):
     """docstring for TraversableGraph"""
     def __init__(self):
@@ -25,6 +26,7 @@ class TraversableGraph(Graph):
                        stack.push(child)
             except LookupError:
                 break
+        traversed.reverse()
         return traversed
 
     def breadth_first_traversal(self, start):
@@ -45,6 +47,7 @@ class TraversableGraph(Graph):
                        q.enqueue(child)
             except LookupError:
                 break
+        traversed.reverse()
         return traversed
 
 if __name__ == "__main__":
