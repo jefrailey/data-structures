@@ -26,3 +26,23 @@ class TraversableGraph(Graph):
             except LookupError:
                 break
         return traversed
+
+    def breadth_first_traversal(self, start):
+        if start not in self.nodes():
+            raise KeyError
+        node = start
+        q = Queue()
+        q.enqueue(node)
+        traversed = []
+        while len(traversed) < len(self.nodes()):
+            try:
+                node = q.dequeue()
+                print node
+                traversed.insert(0, node)
+                children = self.neighbors(node)
+                for child in children:
+                    if child not in traversed:
+                       q.enqueue(child)
+            except LookupError:
+                break
+        return traversed
