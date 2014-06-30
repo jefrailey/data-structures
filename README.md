@@ -5,6 +5,7 @@ This repository contains example data structures implemented in python. All impl
 were co-written with [Nathan Hubbell](https://github.com/lnhubbell). All other collaborators and
 sources of inspiration are listed under the structure to which they contributed.
 
+[![Build Status](https://travis-ci.org/jefrailey/data-structures.svg)](https://travis-ci.org/jefrailey/data-structures)
 
 Structures
 -----------------
@@ -63,10 +64,10 @@ This implementation of a parenthesis checker accepts a unicode string and determ
 or not any parentheses are balanced. It returns the following values based on the number
 of parenthesis:
 
-    * 1: If there are more closed parenthesis (")") than open ("(").
-    * -1: If there are more open parenthesis  than closed.
+    * -1: If there are more closed parenthesis (")") than open ("(").
+    * 1: If there are more open parenthesis  than closed.
     * 0: If the parenthesis are equal in number and balanced in distribution.
-    * "All the right pieces in all the wrong places." if the parenthesis are equal in number, but
+    * -2 if the parenthesis are equal in number, but
         imbalanced in distribution.
 
 This was inspired by conversations with [Lawrence Fritts](https://github.com/lfritts).
@@ -102,32 +103,55 @@ Node()
 
 Graph()
 
- * Graph()
-     * Instantiate an empty graph.
- * .nodes()
-     * Returns a list of all nodes in the graph.
- * .edges()
-     * Returns a list of all edges in the graph.
- * .add_node(name)
-     * Adds an unconnected node named 'name' to the graph.
- * .del_node(name)
-     * Deletes a node named 'name' and all the edges connected to it.
- * .add_edge(name1, name2)
-     * Adds an edge to the graph connecting nodes named 'name1' and 'name2'. These nodes are created if they don't exist.
- * .del_edge(name1, name2)
-     * Deletes the edge between 'name1' and 'name2' if it exists.
- * .has_node(name)
-     * Returns True if the node named 'name' is in the graph. False otherwise.
- * .adjacent(name1, name 2)
-     * Returns True if 'name1' and 'name2' have an edge between them. Returns false if they do not. Raises a KeyError if either of them don't exist.
- * .neighbors(name)
-     * Returns a list of all nodes connected to node named 'name'.
+     * Graph()
+         * Instantiate an empty graph.
+     * .nodes()
+         * Returns a list of all nodes in the graph.
+     * .edges()
+         * Returns a list of all edges in the graph.
+     * .add_node(name)
+         * Adds an unconnected node named 'name' to the graph.
+     * .del_node(name)
+         * Deletes a node named 'name' and all the edges connected to it.
+     * .add_edge(name1, name2)
+         * Adds an edge to the graph connecting nodes named 'name1' and 'name2'. These nodes are created if they don't exist.
+     * .del_edge(name1, name2)
+         * Deletes the edge between 'name1' and 'name2' if it exists.
+     * .has_node(name)
+         * Returns True if the node named 'name' is in the graph. False otherwise.
+     * .adjacent(name1, name 2)
+         * Returns True if 'name1' and 'name2' have an edge between them. Returns false if they do not. Raises a KeyError if either of them don't exist.
+     * .neighbors(name)
+         * Returns a list of all nodes connected to node named 'name'.
 
 TraversableGraph()
 
- * TraversableGraph()
-    * Instantiate an empty graph with all of the methods of Graph()
- * depth_first_search(start)
-    * Return a list of all of the nodes reachable from the start node via edges and neighbors. This method traverses the graph by exploring one branch to its end before switching branches.
- * breadth_first_search(start)
-    * Return a list of all of the nodes reachable from the start node via edges and neighbors. This method traverses the graph by exploring each child of a node before exploring grandchildren.
+     * TraversableGraph()
+        * Instantiate an empty graph with all of the methods of Graph()
+     * depth_first_search(start)
+        * Return a list of all of the nodes reachable from the start node via edges and neighbors. This method traverses the graph by exploring one branch to its end before switching branches.
+     * breadth_first_search(start)
+        * Return a list of all of the nodes reachable from the start node via edges and neighbors. This method traverses the graph by exploring each child of a node before exploring grandchildren.
+
+WeightedGraph()
+
+     * WeightedGraph()
+         * Instantiate an empty graph.
+     * .nodes()
+         * Returns a list of all nodes in the graph.
+     * .edges()
+         * Returns a list of all edges in the graph.
+     * .add_node(name)
+         * Adds an unconnected node named 'name' to the graph.
+     * .del_node(name)
+         * Deletes a node named 'name' and all the edges connected to it and weights of those edges.
+     * .add_edge(name1, name2)
+         * Adds an edge to the graph connecting nodes named 'name1' and 'name2'. These nodes are created if they don't exist.
+     * .del_edge(name1, name2)
+         * Deletes the edge between 'name1' and 'name2' if it exists.
+     * .has_node(name)
+         * Returns True if the node named 'name' is in the graph. False otherwise.
+     * .adjacent(name1, name 2)
+         * Returns True if 'name1' and 'name2' have an edge between them. Returns false if they do not. Raises a KeyError if either of them don't exist.
+     * .neighbors(name)
+         * Returns a list of all nodes connected to node named 'name'.
