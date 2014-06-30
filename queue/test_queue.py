@@ -15,7 +15,7 @@ def test_enqueue():
     q = Queue()
     for val in value_tuple:
         q.enqueue(val)
-        assert q.head_node.value == val
+        assert q.list.head_node.value == val
 
 
 def test_dequeue():
@@ -24,7 +24,7 @@ def test_dequeue():
     for val in value_tuple:
         q.enqueue(val)
     for val in value_tuple:
-        if q.head_node:
+        if q.list.head_node:
             assert q.dequeue() == val
         else:
             with pytest.raises(LookupError):
