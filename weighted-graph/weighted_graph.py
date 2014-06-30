@@ -1,4 +1,4 @@
-class Graph(object):
+class WeightedGraph(object):
     """docstring for Graph"""
     def __init__(self):
         self._nodes = set()

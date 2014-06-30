@@ -1,25 +1,25 @@
-from weighted_graph import Graph
+from weighted_graph import WeightedGraph
 import pytest
 
 
 def test_nodes_empty():
-    g = Graph()
+    g = WeightedGraph()
     assert g.nodes() == set()
 
 
 def test_edges_empty():
-    g = Graph()
+    g = WeightedGraph()
     assert g.edges() == set()
 
 
 def test_add_node():
-    g = Graph()
+    g = WeightedGraph()
     g.add_node("A")
     assert "A" in g.nodes()
 
 
 def test_add_edge():
-    g = Graph()
+    g = WeightedGraph()
     g.add_node(u"A")
     g.add_node(u"B")
     g.add_edge(u"A", u"B")
@@ -27,7 +27,7 @@ def test_add_edge():
 
 
 def test_add_edge_one_new_node():
-    g = Graph()
+    g = WeightedGraph()
     g.add_node(u"A")
     g.add_edge(u"A", u"C")
     assert u"C" in g.nodes()
@@ -35,7 +35,7 @@ def test_add_edge_one_new_node():
 
 
 def test_add_edge_two_new_nodes():
-    g = Graph()
+    g = WeightedGraph()
     g.add_edge(u"A", u"C")
     assert u"A" in g.nodes()
     assert u"C" in g.nodes()
@@ -43,7 +43,7 @@ def test_add_edge_two_new_nodes():
 
 
 def test_del_node():
-    g = Graph()
+    g = WeightedGraph()
     g.add_edge(u"A", u"C")
     g.del_node(u"A")
     assert u"A" not in g.nodes()
@@ -51,7 +51,7 @@ def test_del_node():
 
 
 def test_del_edge():
-    g = Graph()
+    g = WeightedGraph()
     g.add_edge(u"A", u"C")
     g.del_edge(u"A", u"C")
     assert (u"A", u"C") not in g.edges()
@@ -61,7 +61,7 @@ def test_del_edge():
 
 
 def test_has_node():
-    g = Graph()
+    g = WeightedGraph()
     g.add_node(u"A")
     g.add_node(u"B")
     assert g.has_node(u"A") is True
@@ -69,7 +69,7 @@ def test_has_node():
 
 
 def test_adj():
-    g = Graph()
+    g = WeightedGraph()
     g.add_edge(u"A", u"C")
     g.add_node(u"B")
     print g.edges()
@@ -82,7 +82,7 @@ def test_adj():
 
 
 def test_neighbors():
-    g = Graph()
+    g = WeightedGraph()
     g.add_edge(u"A", u"C")
     g.add_edge(u"A", u"B")
     g.add_edge(u"A", u"D")
@@ -93,14 +93,14 @@ def test_neighbors():
 
 
 def test_add_edge_weight():
-    g = Graph()
+    g = WeightedGraph()
     g.add_node(u"A")
     g.add_edge(u"A", u"C", 10)
     assert g.edgeWeights[(u"A", u"C")] == 10
 
 
 def test_add_multiple_edge_weight():
-    g = Graph()
+    g = WeightedGraph()
     g.add_node(u"A")
     g.add_edge(u"A", u"C", 10)
     g.add_edge(u"C", u"D", 5)
