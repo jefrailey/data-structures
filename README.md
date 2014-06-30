@@ -69,7 +69,7 @@ of parenthesis:
     * "All the right pieces in all the wrong places." if the parenthesis are equal in number, but
         imbalanced in distribution.
 
-This was insipired by conversations with [Lawrence Fritts](https://github.com/lfritts).
+This was inspired by conversations with [Lawrence Fritts](https://github.com/lfritts).
 
 **Doubly Linked List**
 
@@ -98,7 +98,7 @@ Node()
         * Instantiate a node that represents a value.
 
 
-**Graph**
+**Graphs**
 
 Graph()
 
@@ -109,7 +109,7 @@ Graph()
  * .edges()
      * Returns a list of all edges in the graph.
  * .add_node(name)
-     * Adds an unoconnected node named 'name' to the graph.
+     * Adds an unconnected node named 'name' to the graph.
  * .del_node(name)
      * Deletes a node named 'name' and all the edges connected to it.
  * .add_edge(name1, name2)
@@ -122,3 +122,12 @@ Graph()
      * Returns True if 'name1' and 'name2' have an edge between them. Returns false if they do not. Raises a KeyError if either of them don't exist.
  * .neighbors(name)
      * Returns a list of all nodes connected to node named 'name'.
+
+TraversableGraph()
+
+ * TraversableGraph()
+    * Instantiate an empty graph with all of the methods of Graph()
+ * depth_first_search(start)
+    * Return a list of all of the nodes reachable from the start node via edges and neighbors. This method traverses the graph by exploring one branch to its end before switching branches.
+ * breadth_first_search(start)
+    * Return a list of all of the nodes reachable from the start node via edges and neighbors. This method traverses the graph by exploring each child of a node before exploring grandchildren.
