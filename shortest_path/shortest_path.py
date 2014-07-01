@@ -64,12 +64,12 @@ def bellman_ford_moore(wg, source, target):
 
     for node in wg.nodes():
         for start, end in wg.edges():
-            if weight[start] + wg.edgeWeights(node) < weight(end):
-                weight[end] = weight[start] + wg.edgeWeights(node)
+            if weight[start] + wg.edgeWeights[start, end] < weight[end]:
+                weight[end] = weight[start] + wg.edgeWeights[start, end]
                 predecessor[end] = start
 
     for start, end in wg.edges():
-        if weight[start] + wg.edgeWeights(node) < weight[end]:
+        if weight[start] + wg.edgeWeights[start, end] < weight[end]:
             return "Graph has a negative-weight cylcle!!!"
 
     # min_ = float('infinity')
@@ -82,5 +82,6 @@ def bellman_ford_moore(wg, source, target):
     while predecessor[target] is not None:
         path.append(target)
         target = predecessor[target]
-
-    return (dist, path)
+    path.append(source)
+    path.reverse()
+    return (path, dist)
