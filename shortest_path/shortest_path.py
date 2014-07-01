@@ -52,7 +52,7 @@ def dijkstra(wg, source, target):
     return path, distance
 
 
-def bellman_ford_moore(wg, source):
+def bellman_ford_moore(wg, source, target):
     weight = {}
     predecessor = {}
     for node in wg.nodes():
@@ -72,4 +72,15 @@ def bellman_ford_moore(wg, source):
         if weight[start] + wg.edgeWeights(node) < weight[end]:
             return "Graph has a negative-weight cylcle!!!"
 
-    return (weight, predecessor)
+    # min_ = float('infinity')
+    # for key, value in weight.items():
+    #     if value < min_:
+    #         min_ = value
+    path = []
+    dist = weight[target]
+
+    while predecessor[target] is not None:
+        path.append(target)
+        target = predecessor[target]
+
+    return (dist, path)
