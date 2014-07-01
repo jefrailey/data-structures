@@ -11,24 +11,29 @@ def dijkstra(graph, source, target):
             nodes[node] = float('infinity')
     done = False
     while unvisited:
+        print 'current: {}'.format(current)
+        done = False
         while not done:
             neighbors = set(graph.neighbors(current))
             if neighbors == set():
                 done = True
             # min_ = 'node', float('infinity')
+            print 'unvisited {}'.format(unvisited)
             for neighbor in neighbors.intersection(unvisited):
+                print nodes[neighbor]
                 if nodes[neighbor] != float('infinity'):
-                    dist = nodes[neighbor] + graph.edgeWeights[(current, neighbor)]
+                    print 'not infinity'
+                    dist = nodes[current] + graph.edgeWeights[(current, neighbor)]
                 else:
                     dist = graph.edgeWeights[(current, neighbor)]
-                previous[neighbor] = current
                 if dist < nodes[neighbor]:
                     nodes[neighbor] = dist
+                    previous[neighbor] = current
             done = True
                 # if dist < min_[1]:
                 #     min_ == neighbor, dist
-            if current == target:
-                done = True
+            # if current == target:
+            #     done = True
             # current = min_[0]
         unvisited.remove(current)
         min_ = 'node', float('infinity')
