@@ -1,8 +1,8 @@
-def dijkstra(graph, source, target):
+def dijkstra(wg, source, target):
     nodes = {}
     unvisited = set()
     previous = {}
-    for node in graph.nodes():
+    for node in wg.nodes():
         unvisited.add(node)
         if node == source:
             nodes[node] = 0
@@ -14,7 +14,7 @@ def dijkstra(graph, source, target):
         print 'current: {}'.format(current)
         done = False
         while not done:
-            neighbors = set(graph.neighbors(current))
+            neighbors = set(wg.neighbors(current))
             if neighbors == set():
                 done = True
             # min_ = 'node', float('infinity')
@@ -23,9 +23,9 @@ def dijkstra(graph, source, target):
                 print nodes[neighbor]
                 if nodes[neighbor] != float('infinity'):
                     print 'not infinity'
-                    dist = nodes[current] + graph.edgeWeights[(current, neighbor)]
+                    dist = nodes[current] + wg.edgeWeights[(current, neighbor)]
                 else:
-                    dist = graph.edgeWeights[(current, neighbor)]
+                    dist = wg.edgeWeights[(current, neighbor)]
                 if dist < nodes[neighbor]:
                     nodes[neighbor] = dist
                     previous[neighbor] = current
@@ -50,3 +50,26 @@ def dijkstra(graph, source, target):
         target = previous[target]
         path.insert(0, target)
     return path, distance
+
+
+def bellman_ford_moore(wg, source):
+    weight = {}
+    predecessor = {}
+    for node in wg.nodes():
+        if node == source:
+            weight[node] = 0
+        else:
+            weight[node] = float('infinity')
+        predecessor[node] = None
+
+    for node in wg.nodes():
+        for start, end in wg.edges():
+            if weight[start] + wg.edgeWeights(node) < weight(end):
+                weight[end] = weight[start] + wg.edgeWeights(node)
+                predecessor[end] = start
+
+    for start, end in wg.edges():
+        if weight[start] + wg.edgeWeights(node) < weight[end]:
+            return "Graph has a negative-weight cylcle!!!"
+
+    return (weight, predecessor)
