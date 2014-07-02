@@ -15,6 +15,8 @@ class Bst(object):
             else:
                 node = self._root
                 while True:
+                    if isinstance(node, list):
+                        print node
                     left, right, parent = self._nodes[node]
                     if (left < val) and (val < node):
                         try:
@@ -33,10 +35,10 @@ class Bst(object):
                         self._nodes[val] = [None, right, node]
                         break
                     elif val < left:
-                        node = self._nodes[left]
+                        node = left
                         print node
                     elif val > right:
-                        node = self._nodes[right]
+                        node = right
                         print node
 
     def size(self):
@@ -56,5 +58,15 @@ class Bst(object):
                     depth = count
         return depth
 
-    def balance(self):
-        pass
+    def balance(self, node=None, balance=0):
+        if node is None:
+            node = self._root
+        left, right, parent = self._nodes[node]
+        if left is not None:
+            balance -= 1
+            balance = self.balance(left, balance)
+        if right != float('inf'):
+            balance += 1
+            balance = self.balance(right, balance)
+
+        return balance
