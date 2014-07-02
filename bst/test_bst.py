@@ -15,8 +15,16 @@ def test_insert():
     raise AssertionError
 
 
-def test_contains():
-    raise AssertionError
+def test_contains_true():
+    bst = Bst()
+    bst._nodes[1] = (0, None, 2)
+    assert bst.contains(1) is True
+
+
+def test_contains_false():
+    bst = Bst()
+    bst._nodes[1] = (0, None, 2)
+    assert bst.contains(2) is False
 
 
 def test_size():
