@@ -11,8 +11,44 @@ def test_initialize_empty():
     assert bst._nodes == {}
 
 
-def test_insert():
-    raise AssertionError
+def test_insert_no_root():
+    bst = Bst()
+    bst.insert(8)
+    assert bst._root == 8
+
+
+def test_insert_smaller_than_root():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(3)
+    assert bst._root == 8
+
+
+def test_insert_bigger_than_root():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    assert bst._root == 8
+
+
+def test_insert_smaller_and_bigger_than_root():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(3)
+    assert bst._nodes[bst._root] == [3, 10, None]
+
+
+def test_insert_multiple_vals():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(3)
+    bst.insert(6)
+    bst.insert(7)
+    bst.insert(9)
+    assert bst._nodes[7] == [6, float('inf'), 8]
+    assert bst._nodes[9] == [None, 10, 8]
 
 
 def test_contains_true():
@@ -28,7 +64,20 @@ def test_contains_false():
 
 
 def test_size():
-    raise AssertionError
+    bst = Bst()
+    bst.insert(8)
+    # print bst._nodes
+    bst.insert(10)
+    # print bst._nodes
+    bst.insert(3)
+    # print bst._nodes
+    bst.insert(6)
+    # print bst._nodes
+    bst.insert(7)
+    # print bst._nodes
+    bst.insert(9)
+    # print bst._nodes
+    assert bst.size() == 6
 
 
 def test_depth():
