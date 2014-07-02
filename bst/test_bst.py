@@ -86,4 +86,41 @@ def test_depth():
 
 
 def test_balance():
-    raise AssertionError
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(3)
+    bst.insert(6)
+    bst.insert(7)
+    bst.insert(9)
+    assert bst.balance() == -1
+
+
+def test_balance_long_right_side():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(11)
+    bst.insert(13)
+    bst.insert(15)
+    bst.insert(19)
+    assert bst.balance() == 5
+
+
+def test_balance_long_left_side():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(7)
+    bst.insert(6)
+    bst.insert(5)
+    bst.insert(4)
+    bst.insert(3)
+    assert bst.balance() == -5
+
+
+def test_balance_three_nodes():
+    bst = Bst()
+    bst.insert(7)
+    bst.insert(8)
+    bst.insert(6)
+    assert bst.balance() == 0
