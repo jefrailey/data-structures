@@ -66,22 +66,23 @@ def test_contains_false():
 def test_size():
     bst = Bst()
     bst.insert(8)
-    # print bst._nodes
     bst.insert(10)
-    # print bst._nodes
     bst.insert(3)
-    # print bst._nodes
     bst.insert(6)
-    # print bst._nodes
     bst.insert(7)
-    # print bst._nodes
     bst.insert(9)
-    # print bst._nodes
     assert bst.size() == 6
 
 
 def test_depth():
-    raise AssertionError
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(3)
+    bst.insert(6)
+    bst.insert(7)
+    bst.insert(9)
+    assert bst.depth() == 3
 
 
 def test_balance():
