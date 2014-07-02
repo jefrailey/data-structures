@@ -8,7 +8,7 @@ class Bst(object):
         pass
 
     def contains(self, val):
-        pass
+        return bool(self._nodes.get(val, False))
 
     def size(self):
         pass
