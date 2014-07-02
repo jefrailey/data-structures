@@ -1,14 +1,16 @@
 class Bst(object):
-    """docstring for Bst"""
+    u"""A representation of a binary search tree."""
     def __init__(self):
         super(Bst, self).__init__()
         self._nodes = {}  # nodes[node] = [Left, Right, Parent]
         self._root = None
 
     def contains(self, val):
+        u"""Return True if val is in the tree and False otherwise."""
         return bool(self._nodes.get(val, False))
 
     def insert(self, val):
+        u"""Add a val to the tree if it is not already in the tree."""
         if not self.contains(val):
             if self._root is None:
                 self._nodes[val], self._root = [None, float('inf'), None], val
@@ -42,9 +44,11 @@ class Bst(object):
                         print node
 
     def size(self):
+        u"""Return the number of nodes in the tree."""
         return len(self._nodes.keys())
 
     def depth(self):
+        u"""Return the number of nodes in the deepest branch."""
         depth = 0
         for k, v in self._nodes.items():
             left, right, parent = v
@@ -59,6 +63,7 @@ class Bst(object):
         return depth
 
     def balance(self, node=None, balance=0):
+        u"""Return an int representing how well balanced the tree is."""
         if node is None:
             node = self._root
         left, right, parent = self._nodes[node]
@@ -68,5 +73,4 @@ class Bst(object):
         if right != float('inf'):
             balance += 1
             balance = self.balance(right, balance)
-
         return balance
