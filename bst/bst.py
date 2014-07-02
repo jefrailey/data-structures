@@ -40,10 +40,21 @@ class Bst(object):
                         print node
 
     def size(self):
-        return len (self._nodes.keys())
+        return len(self._nodes.keys())
 
     def depth(self):
-        pass
+        depth = 0
+        for k, v in self._nodes.items():
+            left, right, parent = v
+            if left is None and right == float('inf'):
+                node = k
+                count = 0
+                while node != self._root:
+                    node = self._nodes[node][2]
+                    count += 1
+                if count > depth:
+                    depth = count
+        return depth
 
     def balance(self):
         pass
