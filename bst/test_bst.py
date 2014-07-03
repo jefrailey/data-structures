@@ -47,8 +47,8 @@ def test_insert_multiple_vals():
     bst.insert(6)
     bst.insert(7)
     bst.insert(9)
-    assert bst._nodes[7] == [6, float('inf'), 8]
-    assert bst._nodes[9] == [None, 10, 8]
+    assert bst._nodes[7] == [None, float('inf'), 6]
+    assert bst._nodes[10] == [9, float('inf'), 8]
 
 
 def test_contains_true():
@@ -93,7 +93,7 @@ def test_balance():
     bst.insert(6)
     bst.insert(7)
     bst.insert(9)
-    assert bst.balance() == -1
+    assert bst.balance() == 1
 
 
 def test_balance_long_right_side():
