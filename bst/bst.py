@@ -9,7 +9,7 @@ class Bst(object):
         u"""Return True if val is in the tree and False otherwise."""
         return bool(self._nodes.get(val, False))
 
-    def insert(self, val):
+    def insert_poorly(self, val):
         u"""Add a val to the tree if it is not already in the tree."""
         if not self.contains(val):
             if self._root is None:
@@ -42,6 +42,32 @@ class Bst(object):
                     elif val > right:
                         node = right
                         print node
+
+    def insert(self, val):
+        u"""Add a val to the tree if it is not already in the tree."""
+        if not self.contains(val):
+            if self._root is None:
+                self._root = val
+                self._nodes[val] = [None, float('inf'), None]
+                return
+
+            node = self._root
+
+            while True:
+                if node is None:
+                    self._nodes[val] = [None, float('inf'), parent]
+                    self._nodes[parent][0] = val
+                    return
+                if node == float('inf'):
+                    self._nodes[val] = [None, float('inf'), parent]
+                    self._nodes[parent][1] = val
+                    return
+                left, right = self._nodes[node][0:2]
+                parent = node
+                if val > node:
+                    node = right
+                elif val < node:
+                    node = left
 
     def size(self):
         u"""Return the number of nodes in the tree."""
