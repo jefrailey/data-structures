@@ -1,5 +1,6 @@
 from queue import Queue
 
+
 class Bst(object):
     u"""A representation of a binary search tree."""
     def __init__(self):
@@ -103,9 +104,45 @@ class Bst(object):
             balance = self.balance(right, balance)
         return balance
 
-    def breadth_first_traversal(self):
-        node = self._root
+    def pre_order(self, node):
+        u"""Return a generator with nodes traversed in pre-order."""
+        if node is None or node == float('inf'):
+            return
+        else:
+            yield node
+            left, right = self._nodes[node][0:2]
+            for i in self.pre_order(left):
+                yield i
+            for i in self.pre_order(right):
+                yield i
 
+    def in_order(self, node):
+        u"""Return a generator with nodes traversed in order."""
+        if node is None or node == float('inf'):
+            return
+        else:
+            left, right = self._nodes[node][0:2]
+            for i in self.in_order(left):
+                yield i
+            yield node
+            for i in self.in_order(right):
+                yield i
+
+    def post_order(self, node):
+        u"""Return a generator with nodes traversed in post-order."""
+        if node is None or node == float('inf'):
+            return
+        else:
+            left, right = self._nodes[node][0:2]
+            for i in self.post_order(left):
+                yield i
+            for i in self.post_order(right):
+                yield i
+            yield node
+
+    def breadth_first_traversal(self):
+        u"""Return a generator with nodes traversed in level-order."""
+        node = self._root
         q = Queue()
         q.enqueue(node)
         traversed = []

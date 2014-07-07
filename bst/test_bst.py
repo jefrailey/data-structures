@@ -126,6 +126,57 @@ def test_balance_three_nodes():
     assert bst.balance() == 0
 
 
+def test_in_order():
+    bst = Bst()
+    vals = [37, 22, 6, 28, 17, 14]
+    for val in vals:
+        bst.insert(val)
+    vals.sort()
+    for i, g in enumerate(bst.in_order(37)):
+        assert g == vals[i]
+
+
+def test_in_order_2():
+    bst = Bst()
+    vals = [44, 19, 6, 7, 8]
+    for val in vals:
+        bst.insert(val)
+    vals.sort()
+    for i, g in enumerate(bst.in_order(44)):
+        assert g == vals[i]
+
+
+def test_in_order_long():
+    bst = Bst()
+    vals = range(100, 0, -3)
+    for val in vals:
+        bst.insert(val)
+    vals.sort()
+    for i, g in enumerate(bst.in_order(100)):
+        assert g == vals[i]
+
+
+def test_in_order_alpha():
+    bst = Bst()
+    vals = ['F', 'B', 'G', 'A', 'D', 'I', 'C', 'E', 'H']
+    for val in vals:
+        bst.insert(val)
+    vals.sort()
+    for i, g in enumerate(bst.in_order('F')):
+        assert g == vals[i]
+
+
+def test_pre_order():
+    bst = Bst()
+    vals = ['F', 'B', 'G', 'A', 'D', 'I', 'C', 'E', 'H']
+    for val in vals:
+        bst.insert(val)
+    comparison = ['F', 'B', 'A', 'D', 'C', 'E', 'G', 'I', 'H']
+    for i, g in enumerate(bst.pre_order('F')):
+        print g
+        assert g == comparison[i]
+
+
 def test_breadth_all_left():
     bst = Bst()
     bst.insert(8)
@@ -154,21 +205,3 @@ def test_breadth_complex():
         _list.append(node)
 
     assert _list == [8, 4, 10, 3, 7, 15]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
