@@ -173,7 +173,16 @@ def test_pre_order():
         bst.insert(val)
     comparison = ['F', 'B', 'A', 'D', 'C', 'E', 'G', 'I', 'H']
     for i, g in enumerate(bst.pre_order('F')):
-        print g
+        assert g == comparison[i]
+
+
+def test_post_order():
+    bst = Bst()
+    vals = ['F', 'B', 'G', 'A', 'D', 'I', 'C', 'E', 'H']
+    for val in vals:
+        bst.insert(val)
+    comparison = ['A', 'C', 'E', 'D', 'B', 'H', 'I', 'G', 'F']
+    for i, g in enumerate(bst.post_order('F')):
         assert g == comparison[i]
 
 
