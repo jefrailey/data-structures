@@ -100,3 +100,14 @@ class Bst(object):
             balance += 1
             balance = self.balance(right, balance)
         return balance
+
+    def in_order(self, node):
+        if node is None or node == float('inf'):
+            return
+        else:
+            left, right = self._nodes[node][0:2]
+            for i in self.in_order(left):
+                yield i
+            yield node
+            for i in self.in_order(right):
+                yield i
