@@ -154,3 +154,33 @@ def test_in_order_long():
     vals.sort()
     for i, g in enumerate(bst.in_order(100)):
         assert g == vals[i]
+
+
+def test_breadth_all_left():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(7)
+    bst.insert(6)
+    bst.insert(5)
+    bst.insert(4)
+    bst.insert(3)
+    _list = []
+    for node in bst.breadth_first_traversal():
+        _list.append(node)
+
+    assert _list == [8, 7, 6, 5, 4, 3]
+
+
+def test_breadth_complex():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(4)
+    bst.insert(15)
+    bst.insert(7)
+    bst.insert(3)
+    _list = []
+    for node in bst.breadth_first_traversal():
+        _list.append(node)
+
+    assert _list == [8, 4, 10, 3, 7, 15]

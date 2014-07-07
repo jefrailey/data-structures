@@ -1,3 +1,6 @@
+from queue import Queue
+
+
 class Bst(object):
     u"""A representation of a binary search tree."""
     def __init__(self):
@@ -111,3 +114,20 @@ class Bst(object):
             yield node
             for i in self.in_order(right):
                 yield i
+
+    def breadth_first_traversal(self):
+        node = self._root
+        q = Queue()
+        q.enqueue(node)
+        traversed = []
+        while len(traversed) < self.size():
+            try:
+                node = q.dequeue()
+                traversed.append(node)
+                children = self._nodes[node][0:2]
+                for child in children:
+                    if child is not None and child != float('inf'):
+                        q.enqueue(child)
+                yield traversed[-1]
+            except KeyError:
+                break
