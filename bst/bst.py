@@ -120,3 +120,36 @@ class Bst(object):
                 yield traversed[-1]
             except KeyError:
                 break
+
+
+
+    def display(self):
+        node = self._root
+
+        q = Queue()
+        q.enqueue(node)
+        traversed = []
+        while len(traversed) < self.size():
+            try:
+                node = q.dequeue()
+                traversed.append(node)
+                children = self._nodes[node][0:2]
+                for child in children:
+                    if child is not None and child != float('inf'):
+                        q.enqueue(child)
+                yield traversed[-1]
+            except KeyError:
+                break
+
+
+if __name__ == '__main__':
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(4)
+    bst.insert(15)
+    bst.insert(7)
+    bst.insert(3)
+    _list = []
+    for node in bst.breadth_first_traversal():
+        _list.append(node)
