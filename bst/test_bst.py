@@ -156,6 +156,27 @@ def test_in_order_long():
         assert g == vals[i]
 
 
+def test_in_order_alpha():
+    bst = Bst()
+    vals = ['F', 'B', 'G', 'A', 'D', 'I', 'C', 'E', 'H']
+    for val in vals:
+        bst.insert(val)
+    vals.sort()
+    for i, g in enumerate(bst.in_order('F')):
+        assert g == vals[i]
+
+
+def test_pre_order():
+    bst = Bst()
+    vals = ['F', 'B', 'G', 'A', 'D', 'I', 'C', 'E', 'H']
+    for val in vals:
+        bst.insert(val)
+    comparison = ['F', 'B', 'A', 'D', 'C', 'E', 'G', 'I', 'H']
+    for i, g in enumerate(bst.pre_order('F')):
+        print g
+        assert g == comparison[i]
+
+
 def test_breadth_all_left():
     bst = Bst()
     bst.insert(8)
