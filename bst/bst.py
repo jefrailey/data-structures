@@ -158,8 +158,6 @@ class Bst(object):
             except KeyError:
                 break
 
-
-
     def display(self):
         node = self._root
 
@@ -177,6 +175,73 @@ class Bst(object):
                 yield traversed[-1]
             except KeyError:
                 break
+
+    def delete(self, node):
+        if not self.contains(node):
+            raise LookupError
+        left_child, right_child, parent = self._nodes[node]
+        if left_child is None and right_child == float('inf'):
+            pass
+
+        elif left_child is None and right_child != float('inf'):
+            self._nodes[right_child][2] = parent
+            if node < parent:
+                self._nodes[parent][0] = right_child
+            else:
+                self._nodes[parent][1] = right_child
+
+        elif left_child is not None and right_child == float('inf'):
+            self._nodes[left_child][2] = parent
+            if node < parent:
+                self._nodes[parent][0] = left_child
+            else:
+                self._nodes[parent][1] = left_child
+
+        elif left_child is not None and right_child != float('inf'):
+            switch_node = self._left_most(right_child)
+            self._nodes[switch_node], self._nodes[node] = self._nodes[node], self._nodes[switch_node]
+
+            if parent is None:
+                self._root = switch_node
+                self._nodes[switch_node][2] = None
+            elif node < parent:
+                self._nodes[parent][0] = switch_node
+                self._nodes[switch_node][2] = parent
+            else:
+                self._nodes[parent][1] = switch_node
+                self._nodes[switch_node][2] = parent
+            if left_child != switch_node:
+                self._nodes[left_child][2] = switch_node
+            if right_child != switch_node:
+                self._nodes[right_child][2] = switch_node
+
+            if self._nodes[switch_node][1] == switch_node:
+                self._nodes[switch_node][1] = float('inf')
+
+            self.delete(node)
+            return
+
+        self._nodes.pop(node)
+
+
+    def _left_most(self, node):
+        parent = node
+        node = self._nodes[node][0]
+        if node is None:
+            return parent
+        else:
+            return self._left_most(node)
+
+    def _right_most(self, node):
+        parent = node
+        node = self._nodes[node][1]
+        if node is None:
+            return parent
+        else:
+            return self._right_most(node)
+
+
+
 
 
 if __name__ == '__main__':

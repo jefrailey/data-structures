@@ -214,3 +214,31 @@ def test_breadth_complex():
         _list.append(node)
 
     assert _list == [8, 4, 10, 3, 7, 15]
+
+
+def test_delete_root():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(4)
+    bst.insert(15)
+    bst.insert(7)
+    bst.insert(3)
+    bst.delete(8)
+    assert bst.contains(8) is False
+    assert bst._root == 10
+
+
+def test_delete_two_children():
+    bst = Bst()
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(4)
+    bst.insert(15)
+    bst.insert(7)
+    bst.insert(3)
+    bst.delete(4)
+    assert bst.contains(4) is False
+    assert bst._nodes[7] == [3, float('inf'), 8]
+    assert bst._nodes[3] == [None, float('inf'), 7]
+    assert bst._nodes[8] == [7, 10, None]
