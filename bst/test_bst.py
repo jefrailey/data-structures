@@ -124,3 +124,33 @@ def test_balance_three_nodes():
     bst.insert(8)
     bst.insert(6)
     assert bst.balance() == 0
+
+
+def test_in_order():
+    bst = Bst()
+    vals = [37, 22, 6, 28, 17, 14]
+    for val in vals:
+        bst.insert(val)
+    vals.sort()
+    for i, g in enumerate(bst.in_order(37)):
+        assert g == vals[i]
+
+
+def test_in_order_2():
+    bst = Bst()
+    vals = [44, 19, 6, 7, 8]
+    for val in vals:
+        bst.insert(val)
+    vals.sort()
+    for i, g in enumerate(bst.in_order(44)):
+        assert g == vals[i]
+
+
+def test_in_order_long():
+    bst = Bst()
+    vals = range(100, 0, -3)
+    for val in vals:
+        bst.insert(val)
+    vals.sort()
+    for i, g in enumerate(bst.in_order(100)):
+        assert g == vals[i]
