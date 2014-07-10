@@ -19,4 +19,5 @@ class HashTable(object):
         self.table[position].append((key, val))
 
     def get(self, key):
-        pass
+        position = self.hash(key)
+        return [val for k, val in self.table[position] if k == key][0]
