@@ -59,3 +59,11 @@ def test_multiple_sets():
     h.set('i', 10)
     h.set('i', 14)
     assert h.get('i') == 14
+
+
+def test_set_all_words():
+    wordlist = _make_wordlist()
+    h = HashTable(256)
+    for ind, word in enumerate(wordlist):
+        h.set(word[:-1], word[:-1])
+    assert h.get('zoom') == 'zoom'
