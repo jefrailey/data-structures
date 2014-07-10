@@ -8,3 +8,18 @@ def _make_wordlist():
             wordlist.append(word)
     return wordlist
 
+
+def test_hash_one_letter_key():
+    size = 8
+    char = "a"
+    h = HashTable(size)
+    assert h.hash(char) == (ord(char) % size)
+
+
+def test_hash_two_letter_key():
+    size = 8
+    char = "ab"
+    h = HashTable(size)
+    assert h.hash(char) == (
+        sum([ord(c) for c in char]) % size
+        )
