@@ -16,7 +16,13 @@ class HashTable(object):
 
     def set(self, key, val):
         position = self.hash(key)
-        self.table[position].append((key, val))
+        sub_list = self.table[position]
+        if sub_list != []:
+            for ind, pair in enumerate(self.table[position]):
+                if pair == (key, val):
+                    sub_list.pop(ind)
+        sub_list.append((key, val))
+
 
     def get(self, key):
         position = self.hash(key)
