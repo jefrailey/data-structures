@@ -1,10 +1,17 @@
+from math import log
+
+
 class HashTable(object):
     def __init__(self, size):
         u"""Instantiate a HashTable with size number of buckets.
 
-        Size must be a power of two.
+        If size is not a power of two, then size will be increased to the next
+        power of two.
         """
-        self.size = size
+        if size % 2 != 0:
+            self.size = 2**(int(log(size, 2)))*2
+        else:
+            self.size = size
         self.table = [[] for i in xrange(self.size)]
 
     def hash(self, key):
