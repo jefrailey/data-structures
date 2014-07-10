@@ -23,3 +23,11 @@ def test_hash_two_letter_key():
     assert h.hash(char) == (
         sum([ord(c) for c in char]) % size
         )
+
+def test_set_one_letter_key():
+    size = 8
+    chars = "habcdefg"
+    h = HashTable(size)
+    for c in chars:
+        h.set(c, 63)
+    assert h.table == [[(letter, 63)] for letter in chars]
