@@ -19,10 +19,9 @@ class HashTable(object):
         sub_list = self.table[position]
         if sub_list != []:
             for ind, pair in enumerate(self.table[position]):
-                if pair == (key, val):
+                if pair[0] == key:
                     sub_list.pop(ind)
         sub_list.append((key, val))
-
 
     def get(self, key):
         position = self.hash(key)

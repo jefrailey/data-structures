@@ -45,3 +45,17 @@ def test_get_one_letter_key():
     assert h.get('r') == 15
     assert h.get('i') == 8
     assert h.get('c') == 63
+
+
+def test_multiple_sets():
+    size = 8
+    chars = "habcdefg"
+    h = HashTable(size)
+    for c in chars:
+        h.set(c, 63)
+    h.set('i', 80)
+    h.set('r', 15)
+    h.set('i', 9)
+    h.set('i', 10)
+    h.set('i', 14)
+    assert h.get('i') == 14
