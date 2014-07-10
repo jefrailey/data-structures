@@ -1,6 +1,9 @@
 class HashTable(object):
-    """docstring for HashTable"""
     def __init__(self, size):
+        u"""Instantiate a HashTable with size number of buckets.
+
+        Size must be a power of two.
+        """
         self.size = size
         self.table = [[] for i in xrange(self.size)]
 
@@ -15,6 +18,7 @@ class HashTable(object):
         return key_sum & mask
 
     def set(self, key, val):
+        u"""Add a value to the hash table."""
         position = self.hash(key)
         sub_list = self.table[position]
         if sub_list != []:
@@ -24,5 +28,6 @@ class HashTable(object):
         sub_list.append((key, val))
 
     def get(self, key):
+        u"""Return the value associated with that key."""
         position = self.hash(key)
         return [val for k, val in self.table[position] if k == key][0]
