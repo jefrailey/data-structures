@@ -15,7 +15,8 @@ class HashTable(object):
         return key_sum & mask
 
     def set(self, key, val):
-        pass
+        position = self.hash(key)
+        self.table[position].append((key, val))
 
     def get(self, key):
         pass
