@@ -83,7 +83,7 @@ class Bst(object):
             left, right, parent = v
             if left is None and right == float('inf'):
                 node = k
-                count = 0
+                count = 1
                 while node != self._root:
                     node = self._nodes[node][2]
                     count += 1
