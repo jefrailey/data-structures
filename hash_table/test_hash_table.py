@@ -1,8 +1,9 @@
 from hash_table import HashTable
+from os import getcwd as cwd
 
 
 def _make_wordlist():
-    with open('words', 'r') as f:
+    with open(cwd() + '/words', 'r') as f:
         wordlist = []
         for word in f.readlines():
             wordlist.append(word)
