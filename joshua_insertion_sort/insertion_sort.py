@@ -21,3 +21,8 @@ if __name__ == '__main__':
     unsorted_list = range(length)
     t= timeit.Timer(partial(insertion_sort, unsorted_list))
     print "An already sorted list of length " + str(length) + " takes: " + str(t.timeit(reps)) + " seconds to sort.\n"
+
+    unsorted_list = range(length)
+    unsorted_list.reverse()
+    t= timeit.Timer(partial(insertion_sort, unsorted_list))
+    print "A backwards sorted list of length " + str(length) + " takes: " + str(t.timeit(reps)) + " seconds to sort.\n"
