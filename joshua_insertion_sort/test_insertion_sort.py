@@ -11,3 +11,8 @@ def test_already_sorted_sort():
     sorted_list = insertion_sort(unsorted_list)
     assert sorted_list == range(1000)
 
+def test_backwards_sorted_sort():
+    unsorted_list = range(1000)
+    unsorted_list.reverse()
+    sorted_list = insertion_sort(unsorted_list)
+    assert sorted_list == range(1000)
