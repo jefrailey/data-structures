@@ -17,7 +17,7 @@ class HashTable(object):
     def hash(self, key):
         u"""Return hashed key."""
         if not isinstance(key, str):
-            raise KeyError
+            raise TypeError
         key_sum = 0
         for letter in key:
             key_sum += ord(letter)
@@ -37,4 +37,8 @@ class HashTable(object):
     def get(self, key):
         u"""Return the value associated with that key."""
         position = self.hash(key)
-        return [val for k, val in self.table[position] if k == key][0]
+        try:
+            value = [val for k, val in self.table[position] if k == key][0]
+        except IndexError:
+            raise KeyError(u"That key does not have a stored value.")
+        return value
