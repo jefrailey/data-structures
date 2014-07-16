@@ -18,3 +18,6 @@ if __name__ == '__main__':
     t= timeit.Timer(partial(insertion_sort, unsorted_list))
     print "A list of length ten takes: " + str(t.timeit(reps)) + " seconds to sort.\n"
 
+    unsorted_list = range(length)
+    t= timeit.Timer(partial(insertion_sort, unsorted_list))
+    print "An already sorted list of length " + str(length) + " takes: " + str(t.timeit(reps)) + " seconds to sort.\n"
