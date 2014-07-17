@@ -19,3 +19,7 @@ def _median(a, b, c):
         return c
     else:
         return a
+
+if __name__ == '__main__':
+    from data_structures import time_func
+    time_func(quick_sort)
