@@ -8,7 +8,7 @@ def merge_sort(list_):
     right = merge_sort(right)
     if left[-1] <= right[0]:
         return left + right
-    return merge(left, right)
+    return _merge(left, right)
 
 
 def _merge(left, right):
