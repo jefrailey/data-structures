@@ -1,8 +1,9 @@
 from data_structures.hash_table import HashTable
+import os
 
 
 def _make_wordlist():
-    with open('words', 'r') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'words'), 'rb') as f:
         wordlist = []
         for word in f.readlines():
             wordlist.append(word)
