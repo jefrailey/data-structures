@@ -2,11 +2,10 @@ def quick_sort(list_):
     u"""Return a list sorted by the quick sort algorithm."""
     if list_:
         pivot = _median(list_[0], list_[len(list_)//2], list_[-1])
-
-        left = quick_sort([x for x in list_[1:] if x < pivot])
-        right = quick_sort([x for x in list_[1:] if x >= pivot])
-
-        return left + [pivot] + right
+        left = quick_sort([x for x in list_ if x < pivot])
+        right = quick_sort([x for x in list_ if x > pivot])
+        pivots = [x for x in list_ if x == pivot]
+        return left + pivots + right
     else:
         return []
 
