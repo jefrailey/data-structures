@@ -16,3 +16,8 @@ def radix_sort(list_):
         if len(bins[bin_key]) == len(list_) and depth > 0:
             break
     return list_
+
+
+if __name__ == '__main__':
+    from data_structures import time_func
+    time_func(radix_sort)
