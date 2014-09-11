@@ -1,8 +1,8 @@
 class DoublyLinked(object):
-    """Create an object that represents a doubly linked list."""
-    def __init__(self, head=None, tail=None):
-        self.h = head
-        self.t = tail
+    u"""An object that represents a doubly linked list."""
+    def __init__(self):
+        u"""Instantiate an empty DoublyLinked list."""
+        self.head, self.tail = None, None
 
     def insert(self, value):
         u"""Insert a value at the head of the doubly linked list."""
@@ -74,8 +74,6 @@ class DoublyLinked(object):
 
 
 class Node(object):
-    u"""Create an object that represents a node in a doubly linked list."""
-    def __init__(self, value, hwards=None, twards=None):
-        self.hwards = hwards
-        self.twards = twards
-        self.value = value
+    u"""An object that represents a node for use in a doubly linked list."""
+    def __init__(self, value):
+        self.headwards, self.tailwards, self.value = None, None, value
