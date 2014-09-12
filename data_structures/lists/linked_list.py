@@ -1,21 +1,20 @@
 class LinkedList(object):
-    u"""Create an object to represent a linked list."""
+    u"""An object representing a linked list."""
     def __init__(self, head_node=None):
         self.head_node = head_node
-        pass
 
     def insert(self, val):
-        u"""Instantiate a Node at the head of the list."""
+        u"""Instantiate a Node with the given value at the head of the list."""
         if self.head_node:
             self.head_node = Node(val, self.head_node)
         else:
             self.head_node = Node(val)
 
     def pop(self):
-        u"""Pop the head off the linked list."""
+        u"""Return the value of the head node and remove it from the list."""
         if self.head_node:
             value = self.head_node.value
-            self.head_node = self.head_node.the_next
+            self.head_node = self.head_node.next_node
             return value
 
     def size(self):
@@ -24,9 +23,9 @@ class LinkedList(object):
             size = 1
             node = self.head_node
             while True:
-                if node.the_next:
+                if node.next_node:
                     size += 1
-                    node = node.the_next
+                    node = node.next_node
                 else:
                     break
             return size
@@ -40,7 +39,7 @@ class LinkedList(object):
             while True:
                 if node.value == val:
                     return node
-                node = node.the_next
+                node = node.next_node
 
     def remove(self, node):
         u"""Remove the node from the list; assumes node is in list."""
@@ -52,41 +51,38 @@ class LinkedList(object):
         while True:
             if cur_node == node:
                 if prev_node is None:
-                    self.head_node = node.the_next
+                    self.head_node = node.next_node
                     break
-                elif cur_node.the_next is None:
-                    prev_node.the_next = None
+                elif cur_node.next_node is None:
+                    prev_node.next_node = None
                     break
                 else:
-                    prev_node.the_next = cur_node.the_next
+                    prev_node.next_node = cur_node.next_node
                     break
             else:
                 try:
-                    prev_node, cur_node = cur_node, cur_node.the_next
+                    prev_node, cur_node = cur_node, cur_node.next_node
                 except AttributeError:
                     prev_node = cur_node
 
     def __str__(self):
         u"""Return string representation of the linked list."""
         node = self.head_node
-        if not node:
-            return u"()"
-        output = u"(%s" % node.value
-        node = node.the_next
-        while node.value:
-            output = u"%s, %s" % (output, node.value)
-            if node.the_next:
-                node = node.the_next
+        output = [u"("]
+        while node is not None:
+            if node.next_node is not None:
+                output.append(u"{}, ".format(node.value))
+                node = node.next_node
             else:
+                output.append(node.value)
                 break
-        output = u"%s)" % output
-        return output
+        output.append(u")")
+        return u"".join(output)
 
 
 class Node(object):
-    def __init__(self, value, the_next=None):
-        self.value = value
-        self.the_next = the_next
+    def __init__(self, value, next_node=None):
+        self.value, self.next_node = value, next_node
 
     def __str__(self):
         return str(self.value)
