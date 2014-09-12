@@ -2,7 +2,9 @@ from data_structures.lists.linked_list import LinkedList
 
 
 class Queue(object):
+
     u"""A queue object that holds values in a FiFo format."""
+
     def __init__(self):
         self.list = LinkedList()
 
@@ -27,7 +29,7 @@ class Queue(object):
         u"""Return the number of values stored in the Queue."""
         return self.list.size()
 
-    def __str__(self):
+    def __unicode__(self):
         u"""Return a unicode string representation of data held in Queue."""
         output = [u")"]
         if self.list.head_node:
@@ -39,3 +41,6 @@ class Queue(object):
         output.append(u"(")
         output.reverse()
         return u"".join(output)
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')
