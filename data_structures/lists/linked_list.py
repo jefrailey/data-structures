@@ -19,18 +19,16 @@ class LinkedList(object):
 
     def size(self):
         u"""Return the length of the linked list."""
+        size = 0
         if self.head_node:
-            size = 1
             node = self.head_node
             while True:
-                if node.next_node:
-                    size += 1
+                try:
                     node = node.next_node
-                else:
+                except AttributeError:
                     break
-            return size
-        else:
-            return 0
+                size += 1
+        return size
 
     def search(self, val):
         u"""Return the first Node that contains val; None if not found."""
