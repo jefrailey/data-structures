@@ -14,8 +14,8 @@ class Queue(object):
         u"""Removes a value/node from the tail of the Queue object."""
         if self.list.head_node:
             node = self.list.head_node
-            while node.the_next:
-                node = node.the_next
+            while node.next_node:
+                node = node.next_node
             else:
                 last_node = node
             a = last_node.value
@@ -33,11 +33,11 @@ class Queue(object):
         q_str = u")"
         if self.list.head_node:
             node = self.list.head_node
-            while node.the_next:
+            while node.next_node:
                 if len(q_str) == 1:
                     q_str = u"{}".format(node.value) + q_str
                 else:
                     q_str = u"{},".format(node.value) + q_str
-                node = node.the_next
+                node = node.next_node
             q_str = u"{},".format(node.value) + q_str
         return u"({}".format(q_str)
