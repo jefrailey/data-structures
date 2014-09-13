@@ -21,13 +21,16 @@ class PQNode(object):
             else:
                 return 0
 
-    def __str__(self):
+    def __unicode__(self):
         return u"(Value: {}, Priority: {}, Birthdate: {})".format(
             self.value, self.priority, self.birth)
 
     def __repr__(self):
         return u"(Value: {}, Priority: {}, Birthdate: {})".format(
             self.value, self.priority, self.birth)
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')
 
 
 class PriorityQ(Heap):
@@ -41,8 +44,11 @@ class PriorityQ(Heap):
     def peek(self):
         return self.core[0]
 
-    def __str__(self):
+    def __unicode__(self):
         retval = []
         for val in self.core:
-            retval.append("{}".format(val))
-        return ", ".join(retval)
+            retval.append(u"{}".format(val))
+        return u", ".join(retval)
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')
