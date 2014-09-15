@@ -1,15 +1,15 @@
-from data_structures.graphs.simple_graph import Graph
 import pytest
+from data_structures.graphs.simple_graph import Graph
 
 
 def test_nodes_empty():
     g = Graph()
-    assert g.nodes() == set()
+    assert g.nodes() == []
 
 
 def test_edges_empty():
     g = Graph()
-    assert g.edges() == set()
+    assert g.edges() == []
 
 
 def test_add_node():
