@@ -1,15 +1,15 @@
-from data_structures.graphs.simple_graph import Graph
 import pytest
+from data_structures.graphs.simple_graph import Graph
 
 
 def test_nodes_empty():
     g = Graph()
-    assert g.nodes() == set()
+    assert g.nodes() == []
 
 
 def test_edges_empty():
     g = Graph()
-    assert g.edges() == set()
+    assert g.edges() == []
 
 
 def test_add_node():
@@ -67,7 +67,7 @@ def test_has_node():
     assert g.has_node(u"C") is False
 
 
-def test_adj():
+def test_adjacent():
     g = Graph()
     g.add_edge(u"A", u"C")
     g.add_node(u"B")
@@ -89,3 +89,33 @@ def test_neighbors():
     assert u"B" in g.neighbors(u"A")
     assert u"C" in g.neighbors(u"A")
     assert u"D" in g.neighbors(u"A")
+
+
+def test_del_node_node_not_found():
+    g = Graph()
+    g.add_edge(u"D", u"E")
+    with pytest.raises(ValueError):
+        g.del_node(u"A")
+
+
+def test_del_edge_edge_not_found():
+    g = Graph()
+    g.add_edge(u"A", u"C")
+    with pytest.raises(ValueError):
+        g.del_edge(u"B", u"D")
+
+
+def test_adjacent_node_not_found():
+    g = Graph()
+    g.add_edge(u"A", u"C")
+    with pytest.raises(KeyError):
+        g.adjacent(u"B", u"D")
+        g.adjacent(u"A", u"D")
+        g.adjacent(u"B", u"C")
+
+
+def test_neighbors_node_not_found():
+    g = Graph()
+    g.add_edge(u"A", u"C")
+    with pytest.raises(KeyError):
+        g.neighbors(u"B")

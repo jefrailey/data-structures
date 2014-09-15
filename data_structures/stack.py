@@ -1,6 +1,6 @@
 class Stack(object):
 
-    u"""Create an object representing a stack data structure."""
+    u"""An object representing a stack data structure."""
 
     def __init__(self):
         u"""Instantiate a Stack without Data."""
@@ -18,37 +18,41 @@ class Stack(object):
         u"""Remove a data element from the top of the Stack."""
         if self.head_data:
             return_data = self.head_data.value
-            self.head_data = self.head_data.is_above
+            self.head_data = self.head_data.above
             return return_data
         else:
-            raise LookupError
+            raise LookupError(u"Stack is empty")
 
-    def __str__(self):
+    def __unicode__(self):
         u"""
         Return unicode represntation of all values in Stack.
 
         Values are returned from top to bottom.
         """
+        output = [u"("]
         if self.head_data:
             node = self.head_data
-            output = u"("
-            while node.is_above:
-                output += u"{}, ".format(unicode(node.value))
-                node = node.is_above
-            output += u"{})".format(unicode(node.value))
-            return output
-        else:
-            return u"()"
+            while node.above:
+                output.append(u"{}, ".format(node.value))
+                node = node.above
+            output.append(u"{}".format(node.value))
+        output.append(u")")
+        return u"".join(output)
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')
 
 
 class Data(object):
 
-    u"""Create an object representing data in a Stack."""
+    u"""An object representing data in a Stack."""
 
-    def __init__(self, value, is_above=None):
+    def __init__(self, value, above=None):
         self.value = value
-        self.is_above = is_above
+        self.above = above
+
+    def __unicode__(self):
+        return u"{}".format(self.value)
 
     def __str__(self):
-        u"""Return unicode represenation of Data.value."""
-        return unicode(self.value)
+        return unicode(self).encode('utf-8')

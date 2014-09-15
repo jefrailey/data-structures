@@ -2,7 +2,7 @@ from data_structures.lists.linked_list import LinkedList
 
 
 class Queue(object):
-    u"""Creates a queue object that holds values in a FiFo format."""
+    u"""A queue object that holds values in a FiFo format."""
     def __init__(self):
         self.list = LinkedList()
 
@@ -14,15 +14,14 @@ class Queue(object):
         u"""Removes a value/node from the tail of the Queue object."""
         if self.list.head_node:
             node = self.list.head_node
-            while node.the_next:
-                node = node.the_next
-            else:
-                last_node = node
-            a = last_node.value
+            while node.next_node:
+                node = node.next_node
+            last_node = node
+            value = last_node.value
             self.list.remove(last_node)
-            return a
         else:
-            raise LookupError
+            raise LookupError(u"The queue is empty!")
+        return value
 
     def size(self):
         u"""Return the number of values stored in the Queue."""
@@ -30,14 +29,13 @@ class Queue(object):
 
     def __str__(self):
         u"""Return a unicode string representation of data held in Queue."""
-        q_str = u")"
+        output = [u")"]
         if self.list.head_node:
             node = self.list.head_node
-            while node.the_next:
-                if len(q_str) == 1:
-                    q_str = u"{}".format(node.value) + q_str
-                else:
-                    q_str = u"{},".format(node.value) + q_str
-                node = node.the_next
-            q_str = u"{},".format(node.value) + q_str
-        return u"({}".format(q_str)
+            output.append(u"{}".format(node.value))
+            while node.next_node:
+                node = node.next_node
+                output.append(u"{}, ".format(node.value))
+        output.append(u"(")
+        output.reverse()
+        return u"".join(output)
