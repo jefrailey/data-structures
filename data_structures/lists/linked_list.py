@@ -1,5 +1,7 @@
 class LinkedList(object):
+
     u"""An object representing a linked list."""
+
     def __init__(self, head_node=None):
         self.head_node = head_node
 
@@ -63,7 +65,7 @@ class LinkedList(object):
                 except AttributeError:
                     prev_node = cur_node
 
-    def __str__(self):
+    def __unicode__(self):
         u"""Return string representation of the linked list."""
         node = self.head_node
         output = [u"("]
@@ -77,10 +79,16 @@ class LinkedList(object):
         output.append(u")")
         return u"".join(output)
 
+    def __str__(self):
+        return unicode(self).encode('utf-8')
+
 
 class Node(object):
     def __init__(self, value, next_node=None):
         self.value, self.next_node = value, next_node
 
+    def __unicode__(self):
+        return u"{}".format(self.value)
+
     def __str__(self):
-        return str(self.value)
+        return unicode(self).encode('utf-8')
