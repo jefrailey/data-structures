@@ -20,54 +20,59 @@ class Graph(object):
 
     def add_edge(self, node1, node2):
         u"""Add an edge to the graph and corresponding nodes."""
-        if node1 not in self.nodes():
+        if node1 not in self._nodes:
             self.add_node(node1)
-        if node2 not in self.nodes():
+        if node2 not in self._nodes:
             self.add_node(node2)
-        if (node1, node2) and (node2, node1) not in self.edges():
+        if (node1, node2) and (node2, node1) not in self._edges:
             self._edges.add((node1, node2))
 
     def del_node(self, node):
         u"""Remove node and corresponding edges from the graph."""
-        if node in self.nodes():
+        if node in self._nodes:
             self._nodes.remove(node)
             edges = self.edges()
-            for edge in edges:  # Can this be done without copying the set?
+            for edge in edges:
                 if node in edge:
                     self._edges.remove(edge)
         else:
-            raise ValueError(u"Node not found")
+            raise ValueError(u"Node, {}, not found".format(node))
 
     def del_edge(self, node1, node2):
         u"""Remove edge between node1 and node2 from the graph."""
+        edge1, edge2 = (node1, node2), (node2, node1)
         try:
-            self._edges.remove((node1, node2))
+            self._edges.remove(edge1)
         except KeyError:
-            self._edges.remove((node2, node1))
+            try:
+                self._edges.remove(edge2)
+            except KeyError:
+                raise ValueError(
+                    u"Edge, {} and {}, not found".format(edge1, edge2)
+                )
 
     def has_node(self, node):
         u"""Return True if node is in the graph; False if not."""
-        return node in self.nodes()
+        return node in self._nodes
 
     def adjacent(self, node1, node2):
         u"""Return True if node1 and node2 are adjacent; False if not."""
-        if node1 not in self.nodes() or node2 not in self.nodes():
-            raise KeyError
-        elif (node1, node2) not in self.edges() and (
-                (node2, node1) not in self.edges()):
-            return False
-        else:
-            return True
+        edge1, edge2 = (node1, node2), (node2, node1)
+        if not self.has_node(node1):
+            raise KeyError(u"Node, {}, not found".format(node1))
+        elif not self.has_node(node2):
+            raise KeyError(u"Node, {}, not found".format(node2))
+        return edge1 in self._edges or edge2 in self._edges
 
     def neighbors(self, node):
         u"""Return a list of nodes adjacent to a node."""
-        if node not in self.nodes():
-            raise KeyError
+        if node not in self._nodes:
+            raise KeyError(u"Node, {}, not found".format(node))
         else:
-            retlist = []
-            for node1, node2 in self.edges():
+            neighbors = []
+            for node1, node2 in self._edges:
                 if node1 == node:
-                    retlist.append(node2)
+                    neighbors.append(node2)
                 elif node2 == node:
-                    retlist.append(node1)
-        return retlist
+                    neighbors.append(node1)
+        return neighbors
