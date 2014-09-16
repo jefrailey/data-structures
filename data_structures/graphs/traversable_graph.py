@@ -4,12 +4,19 @@ from data_structures.queue import Queue
 
 
 class TraversableGraph(Graph):
-    """docstring for TraversableGraph"""
+
+    u"""A graph with methods for traversal."""
+
     def __init__(self):
         super(TraversableGraph, self).__init__()
 
     def depth_first_traversal(self, start):
-        if start not in self.nodes():
+        u"""Return a list of nodes reachable from start via depth first search.
+
+        This method traverses the graph by exploring one branch to its end
+        before switching branches.
+        """
+        if start not in self._nodes:
             raise KeyError
         node = start
         stack = Stack()
@@ -18,18 +25,21 @@ class TraversableGraph(Graph):
         while len(traversed) < len(self.nodes()):
             try:
                 node = stack.pop()
-                print node
-                traversed.insert(0, node)
-                children = self.neighbors(node)
-                for child in children:
-                    if child not in traversed:
-                       stack.push(child)
             except LookupError:
                 break
-        traversed.reverse()
+            traversed.append(node)
+            children = self.neighbors(node)
+            for child in children:
+                if child not in traversed:
+                    stack.push(child)
         return traversed
 
     def breadth_first_traversal(self, start):
+        u"""Return a list of nodes reachable from start via breadth first search.
+
+        This method traverses the graph by exploring each child of a node
+        before exploring grandchildren.
+        """
         if start not in self.nodes():
             raise KeyError
         node = start
@@ -39,15 +49,13 @@ class TraversableGraph(Graph):
         while len(traversed) < len(self.nodes()):
             try:
                 node = q.dequeue()
-                print node
-                traversed.insert(0, node)
-                children = self.neighbors(node)
-                for child in children:
-                    if child not in traversed:
-                       q.enqueue(child)
             except LookupError:
                 break
-        traversed.reverse()
+            traversed.append(node)
+            children = self.neighbors(node)
+            for child in children:
+                if child not in traversed:
+                    q.enqueue(child)
         return traversed
 
 if __name__ == "__main__":
