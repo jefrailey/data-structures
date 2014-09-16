@@ -30,38 +30,56 @@ just_nodes.add_node(u"D")
 
 def test_depth_reg():
     ans = g.depth_first_traversal(u"B")
-    assert ans == [u"B", u"A", u"C", u"D", u"E"] or \
-        ans == [u"B", u"A", u"D", u"E", u"C"]
+    expected = (
+        [u"B", u"A", u"C", u"D", u"E"],
+        [u"B", u"A", u"D", u"E", u"C"]
+    )
+    assert ans in expected
 
 
 def test_breadth_reg():
     ans = g.breadth_first_traversal(u"B")
-    assert ans == [u"B", u"A", u"C", u"D", u"E"] or \
-        ans == [u"B", u"A", u"D", u"C", u"E"]
+    expected = (
+        [u"B", u"A", u"C", u"D", u"E"],
+        [u"B", u"A", u"D", u"C", u"E"]
+    )
+    assert ans in expected
 
 
 def test_depth_circle():
     ans = circle.depth_first_traversal(u"A")
-    assert ans == [u"A", u"B", u"C", u"D", u"E"] or \
-        ans == [u"A", u"D", u"C", u"B", u"E"]
+    expected = (
+        [u"A", u"B", u"C", u"D", u"E"],
+        [u"A", u"D", u"C", u"B", u"E"]
+    )
+    assert ans in expected
 
 
 def test_breadth_circle():
     ans = circle.breadth_first_traversal(u"A")
-    assert ans == [u"A", u"B", u"D", u"C", u"E"] or \
-        ans == [u"A", u"D", u"B", u"C", u"E"]
+    expected = (
+        [u"A", u"B", u"D", u"C", u"E"],
+        [u"A", u"D", u"B", u"C", u"E"]
+    )
+    assert ans in expected
 
 
 def test_depth_spider():
     ans = d.depth_first_traversal(u"Head")
-    assert ans == [u"Head", u"A", u"B", u"C", 1, 2, 3] or \
-        ans == [u"Head", 1, 2, 3, u"A", u"B", u"C"]
+    expected = (
+        [u"Head", u"A", u"B", u"C", 1, 2, 3],
+        [u"Head", 1, 2, 3, u"A", u"B", u"C"]
+    )
+    assert ans in expected
 
 
 def test_breadth_spider():
     ans = d.breadth_first_traversal(u"Head")
-    assert ans == [u"Head", 1, u"A", 2, u"B", 3, u"C"] or \
-        ans == [u"Head",  u"A", 1, u"B", 2, u"C", 3]
+    expected = (
+        [u"Head", 1, u"A", 2, u"B", 3, u"C"],
+        [u"Head",  u"A", 1, u"B", 2, u"C", 3]
+    )
+    assert ans in expected
 
 
 def test_depth_just_node():
